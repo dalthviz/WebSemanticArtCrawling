@@ -162,10 +162,10 @@ public class Artcyclopedia {
 		}else{
                     if (infoArtista[1].contains("-"))
                     {
-                        anioMuerte = infoArtista[1].trim().split("-")[1].replace("]","");
+                        anioMuerte = infoArtista[1].trim().split("-")[1].replace("]","").replace("ca.", "");
                     }else if (!infoArtista[1].contains("born") && infoArtista[1].contains("died"))
                     {
-                        anioMuerte = infoArtista[1].trim().split(" ")[1].replace("]", "");
+                        anioMuerte = infoArtista[1].trim().split(" ")[1].replace("]", "").replace("ca.", "");
                     }else{
                         anioMuerte = "";
                     }
@@ -194,11 +194,15 @@ public class Artcyclopedia {
                         anioNacimiento = infoArtista[1].trim().split(" ")[2].replace("]", "");
                     }else if (!infoArtista[1].contains("in") && infoArtista[1].contains("born") && !infoArtista[1].contains("died"))
                     {
-                        anioNacimiento = infoArtista[1].trim().split(" ")[1].replace("ca.","").replace("]", "");
+                        anioNacimiento = infoArtista[1].trim().split(" ")[1].replace("active","").replace("ca.","").replace("]", "");
                     }
                     else if(!infoArtista[1].contains("died") && infoArtista[1].contains("-")){
                      String [] nacimiento = infoArtista[1].trim().split("-");
-                        anioNacimiento = nacimiento[0].replace("known","").replace("ca.","").trim();
+                        anioNacimiento = nacimiento[0].replace("known","").replace("active","").replace("ca.","").trim();
+                    }
+                    else if(infoArtista[1].contains("active") && infoArtista[1].contains("-")){
+                        anioNacimiento = infoArtista[1].replace("active","").trim().split("-")[0];
+                        
                     }
                 }               
 		
